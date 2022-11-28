@@ -32,14 +32,14 @@ const gameBoard = (() => {
         winConditions.forEach(row => {
             if(cells[row[0]]){
                 if((cells[row[0]] === cells[row[1]]) && (cells[row[0]]  === cells[row[2]])) {
-                    result = "win";
+                    result = cells[row[0]];
                     displayController.endgame(result);
                 }
             }
         });
 
         if(marked==9 && !result) {
-            result = "draw";
+            result = "DRAW";
             displayController.endgame(result);
         }
     };
@@ -50,6 +50,9 @@ const gameBoard = (() => {
 const displayController = (() => {
     const cellElements = document.querySelectorAll(".cell");
     const restartButton = document.querySelector(".restart");
+    const board = document.querySelector(".bigContainer");
+    const resultDiv = document.querySelector(".resultDiv");
+    const resultH1 = document.querySelector(".result");
     const playerX = player("X");
     const playerO = player("O");
     let currentPlayer = playerX;
@@ -65,9 +68,13 @@ const displayController = (() => {
         gameBoard.reset();
         currentPlayer = playerX;
         gameOver = false;
+        board.classList.remove("blur");
+        resultDiv.classList.add("hide");
+        
     };
 
     restartButton.onclick = restart;
+    resultDiv.onclick = restart;
 
     cellElements.forEach(cellElement => {
         cellElement.onclick = () => {
@@ -86,8 +93,11 @@ const displayController = (() => {
 
     const endgame = result => {
         gameOver = true;
-        if(result=="draw") console.log(result);
-        else console.log(currentPlayer.sign + " Won");
+        board.classList.add("blur");
+        resultDiv.classList.remove("hide");
+        resultH1.innerHTML = result;
+        if(result=="DRAW") resultH1.style.fontSize = "70px";
+        else resultH1.style.fontSize = "200px";
     };
 
     return { endgame };

@@ -1,21 +1,33 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 .bigContainer{
     background-color: #344D67;
     padding: 40px;
     width: fit-content;
     margin: 50px auto;
 }
+.blur{
+    filter: blur(4px);
+}
 .container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
+    gap: 3px;
     width: fit-content;
-    background-color: #6ECCAF;
+    background-color: white;
 }
 .cell{
     background-color: #344D67;
     height: 75px;
     width: 75px;
     font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    color: darkcyan;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 .restart{
     background-color: white;
@@ -25,5 +37,23 @@
     font-weight: bold;
     width: 200px;
     height: 50px;
-    
+}
+.restart:hover{
+    background-color: #344D67;
+    color: white;
+    cursor: pointer;
+}
+.resultDiv{
+    width: 311px;
+    height: 311px;
+    position: fixed;
+    top: 50px;
+    left: calc(50% - 311px/2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightcyan;
+}
+.hide{
+    visibility: hidden;
 }
